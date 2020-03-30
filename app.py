@@ -17,10 +17,9 @@ slack_events_adapter = SlackEventAdapter(os.environ["SLACK_SIGNING_SECRET"], "/s
 # Initialize a Web API client
 slack_web_client = WebClient(token=os.environ['SLACK_BOT_TOKEN'])
 
-# For simplicity we'll store our app data in-memory with the following data structure.
-# onboarding_tutorials_sent = {"channel": {"user_id": OnboardingTutorial}}
-onboarding_tutorials_sent = {}
-dtbot_channel = ""
+# Initialize channel settings
+# dtbot_channel = ""
+dtbot_channel = "sophbros-dt"
 channel_members = set()
 
 def refresh_members(channel):
@@ -52,6 +51,7 @@ def post_dtbot_msg(channel: str, assignees: list):
 
 # Weekly Scheduler
 schedule.every().sunday.at("07:00").do(refresh_members("sophbros-dt"))
+schedule.every(5).seconds.do(assign_dt())
 schedule.every().monday.at("07:00").do(assign_dt())
 schedule.every().wednesday.at("07:00").do(assign_dt())
 schedule.every().friday.at("07:00").do(assign_dt())

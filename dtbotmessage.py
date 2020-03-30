@@ -28,7 +28,8 @@ class DTBotMessage:
             "text": {
                 "type": "mrkdwn",
                 "text": (
-                    assignment
+#                    assignment
+                    "hi"
                 ),
             },
         }

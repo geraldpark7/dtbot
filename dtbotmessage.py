@@ -1,4 +1,4 @@
-class OnboardingTutorial:
+class DTBotMessage:
     """Constructs the onboarding message and stores the state of which tasks were completed."""
 
     WELCOME_BLOCK = {
@@ -6,7 +6,7 @@ class OnboardingTutorial:
         "text": {
             "type": "mrkdwn",
             "text": (
-                "Morning ya shmucks! :sunny: God said the DT group up today is ... :thinking_face:\n\n"
+                "Morning ya shmucks! :sunny: God said the DT group for today is ... :thinking_face:\n\n"
             ),
         },
     }
@@ -16,8 +16,22 @@ class OnboardingTutorial:
         self.channel = channel
         self.username = "dt_bot"
         self.icon_emoji = ":bible:"
-        self.timestamp = ""
-        self.ASSIGNEES_BLOCK = {}
+
+        assignment = ""
+        for i in range(2):
+            assignment = "@"
+            assignment += assignees.pop(0) + " "
+        assignment += ":smile\n\n"
+
+        self.ASSIGNEES_BLOCK = {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": (
+                    assignment
+                ),
+            },
+        }
 
     def get_message_payload(self):
         return {

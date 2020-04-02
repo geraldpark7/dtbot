@@ -19,6 +19,9 @@ def get_channel_members_and_sanitize(channel: str) -> set:
 
     slack_members = set(members['members'])
 
+    # Remove DT Bot
+    if 'U010M5E8CAE' in slack_members:
+        slack_members.remove('U010M5E8CAE')
     # Remove the staff
     if 'U0111P7L7FY' in slack_members:
         slack_members.remove('U0111P7L7FY')  # Remove Gerald Park

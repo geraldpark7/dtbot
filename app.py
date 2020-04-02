@@ -25,12 +25,7 @@ def get_channel_members_and_sanitize(channel: str) -> set:
     if 'U010ZT6TALD' in slack_members:
         slack_members.remove('U010ZT6TALD')  # Remove Johnny Yeo
 
-    # convert set of slack members into set of profiles
-    user_profiles = set(map(lambda user_id: slack_web_client.users_profile_get(user=user_id), slack_members))
-
-    # convert set of user profiles to set of readable user names
-    sanitized_channel_members = set(map(lambda user: user['profile']['display_name'], user_profiles))
-    return sanitized_channel_members
+    return slack_members
 
 
 def dtbot_post_msg(grouping: str) -> None:
@@ -84,11 +79,11 @@ if __name__ == "__main__":
 
     schedule.every().monday.at("07:00").do(lambda: dtbot_post_msg(dt_assignment.mon_grouping()))
 
-    schedule.every().tuesday.at("07:00").do(lambda: dtbot_post_msg(":smiley: Johnny Yeo :smiley:"))
+    schedule.every().tuesday.at("07:00").do(lambda: dtbot_post_msg(":smiley: <@U010ZT6TALD> :smiley:"))  # assign DT to JY
 
     schedule.every().wednesday.at("07:00").do(lambda: dtbot_post_msg(dt_assignment.wed_grouping()))
 
-    schedule.every().thursday.at("02:28").do(lambda: dtbot_post_msg(":smirk: Gerald Park :smirk:"))
+    schedule.every().thursday.at("02:28").do(lambda: dtbot_post_msg(":smirk: <@U0111P7L7FY> :smirk:"))  # assign DT to GP
 
     schedule.every().friday.at("07:00").do(lambda: dtbot_post_msg(dt_assignment.fri_grouping()))
 

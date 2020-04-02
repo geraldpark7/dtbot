@@ -44,30 +44,33 @@ class DTassignment:
         self.fri_group.sort()
 
     def mon_grouping(self) -> str:
-        dudes = ":joy:    "
-        for dude in self.mon_group:
+        dudes = ":joy:  "
+        for user_id in self.mon_group:
+            dude = "<@" + user_id + ">"
             dudes += dude
-            dudes += "    "
+            dudes += "  "
         dudes += ":joy:"
         return dudes
 
     def wed_grouping(self) -> str:
-        dudes = ":joy:    "
-        for dude in self.wed_group:
+        dudes = ":joy:  "
+        for user_id in self.wed_group:
+            dude = "<@" + user_id + ">"
             dudes += dude
-            dudes += "    "
+            dudes += "  "
         dudes += ":joy:"
         return dudes
 
     def fri_grouping(self) -> str:
-        dudes = ":joy:    "
-        for dude in self.fri_group:
+        dudes = ":joy:  "
+        for user_id in self.fri_group:
+            dude = "<@" + user_id + ">"
             dudes += dude
-            dudes += "    "
+            dudes += "  "
         dudes += ":joy:"
         return dudes
 
     def clear_groupings(self) -> None:
-        self.mon_group = list()
-        self.wed_group = list()
-        self.fri_group = list()
+        self.mon_group.clear()
+        self.wed_group.clear()
+        self.fri_group.clear()

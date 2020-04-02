@@ -86,7 +86,7 @@ if __name__ == "__main__":
 
     schedule.every().wednesday.at("07:00").do(lambda: dtbot_post_msg(dt_assignment.wed_grouping()))
 
-    schedule.every().thursday.at("02:28").do(lambda: dtbot_post_msg(":smirk: <@U0111P7L7FY> :smirk:"))  # assign DT to GP
+    schedule.every().thursday.at("07:00").do(lambda: dtbot_post_msg(":smirk: <@U0111P7L7FY> :smirk:"))  # assign DT to GP
 
     schedule.every().friday.at("07:00").do(lambda: dtbot_post_msg(dt_assignment.fri_grouping()))
 

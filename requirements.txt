@@ -1,5 +1,2 @@
 schedule>=0.6.0
 slackclient>=2.0.0
-slackeventsapi>=2.1.0
-certifi
-gunicorn

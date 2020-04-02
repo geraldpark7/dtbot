@@ -74,8 +74,7 @@ if __name__ == "__main__":
     logging.debug("Authorized Slack Client")
 
     # Initialize Slack variables
-    dtbot_channel = 'G010QH1D0M7'
-
+    dtbot_channel = 'G010MA06WBU'
     # testing-private-channel id = G010QH1D0M7
     # sophbros-dt id = G010MA06WBU
 
@@ -95,8 +94,6 @@ if __name__ == "__main__":
 
     schedule.every().saturday.at("07:00").do(lambda: refresh_schedule(dt_assignment))
 
-    schedule.every(15).seconds.do(lambda: dtbot_post_msg(":smirk: <<Gerald Park>> :smirk:"))
-
     while True:
         schedule.run_pending()
-        time.sleep(10)  # sleep for 10 seconds between checks on the scheduler
+        time.sleep(50)  # sleep for 50 seconds between checks on the scheduler

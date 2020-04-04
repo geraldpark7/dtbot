@@ -31,6 +31,26 @@ def get_channel_members_and_sanitize(channel: str) -> set:
     return slack_members
 
 
+def dtbot_post_weekly_msg(dt_assignment: DTassignment) -> None:
+    def msg(greeting: int) -> str:
+        switcher = {
+            1: "HALLELUJAH :sunny: God said Let there be DT !!!",
+            2: "ATTENTION Y\'ALL.. this is the DT groups!",
+            3: "I said \"YO GOD, WHAT BE THE DT GROUPS DIS WEEK?\" :thinking_face:",
+        }
+        return switcher.get(greeting, "Invalid option")
+
+    welcoming_greeting = msg(random.randint(1,3))
+    ending_greeting = "Happy Sunday y\'all!! :smile:"
+
+    # Post the intro message in Slack
+    sendMessage(welcoming_greeting)
+    sendMessage("Monday DT group is: " + dt_assignment.mon_grouping())
+    sendMessage("Wednesday DT group is: " + dt_assignment.wed_grouping())
+    sendMessage("Friday DT group is: " + dt_assignment.fri_grouping())
+    sendMessage(ending_greeting)
+
+
 def dtbot_post_msg(grouping: str) -> None:
     def msg(greeting: int) -> str:
         switcher = {
@@ -80,17 +100,20 @@ if __name__ == "__main__":
     dt_assignment = DTassignment(channel_members)
     dt_assignment.assign_random_groupings()
 
-    schedule.every().monday.at("07:00").do(lambda: dtbot_post_msg(dt_assignment.mon_grouping()))
+    # times are in UTC
+    schedule.every().sunday.at("14:00").do(lambda: dtbot_post_weekly_msg(dt_assignment))  # weekly dt group announcement
 
-    schedule.every().tuesday.at("07:00").do(lambda: dtbot_post_msg(":smiley: <@U010ZT6TALD> :smiley:"))  # assign DT to JY
+    schedule.every().monday.at("14:00").do(lambda: dtbot_post_msg(dt_assignment.mon_grouping()))
 
-    schedule.every().wednesday.at("07:00").do(lambda: dtbot_post_msg(dt_assignment.wed_grouping()))
+    schedule.every().tuesday.at("14:00").do(lambda: dtbot_post_msg(":smiley: <@U010ZT6TALD> :smiley:"))  # assign DT to JY
 
-    schedule.every().thursday.at("07:00").do(lambda: dtbot_post_msg(":smirk: <@U0111P7L7FY> :smirk:"))  # assign DT to GP
+    schedule.every().wednesday.at("14:00").do(lambda: dtbot_post_msg(dt_assignment.wed_grouping()))
 
-    schedule.every().friday.at("07:00").do(lambda: dtbot_post_msg(dt_assignment.fri_grouping()))
+    schedule.every().thursday.at("14:00").do(lambda: dtbot_post_msg(":smirk: <@U0111P7L7FY> :smirk:"))  # assign DT to GP
 
-    schedule.every().saturday.at("07:00").do(lambda: refresh_schedule(dt_assignment))
+    schedule.every().friday.at("14:00").do(lambda: dtbot_post_msg(dt_assignment.fri_grouping()))
+
+    schedule.every().saturday.at("14:00").do(lambda: refresh_schedule(dt_assignment))
 
     while True:
         schedule.run_pending()

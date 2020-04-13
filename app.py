@@ -129,3 +129,13 @@ if __name__ == "__main__":
     while True:
         schedule.run_pending()
         time.sleep(50)  # sleep for 50 seconds between checks on the scheduler
+
+# manual webhook commands to post messages!
+# curl -X POST -H 'Content-type: application/json' --data '{"text":"Monday DT Group is:"}' https://hooks.slack.com/services/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
+# curl -X POST -H 'Content-type: application/json' --data '{"text":":joy: <@U010M4E8JR0> <@U010ZFZ2Y4U> <@U010ZSYLG9E> :joy:"}' https://hooks.slack.com/services/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
+#
+# curl -X POST -H 'Content-type: application/json' --data '{"text":"Wednesday DT Group is:"}' https://hooks.slack.com/services/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
+# curl -X POST -H 'Content-type: application/json' --data '{"text":":joy: <@U010ZJ3GVFW> <@U0111GBLZ2B> :joy:"}' https://hooks.slack.com/services/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
+#
+# curl -X POST -H 'Content-type: application/json' --data '{"text":"Friday DT Group is:"}' https://hooks.slack.com/services/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
+# curl -X POST -H 'Content-type: application/json' --data '{"text":":joy: <@U010P9MK283> <@U010ZRJN3D3> <@U011R41N0NR> :joy:"}' https://hooks.slack.com/services/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

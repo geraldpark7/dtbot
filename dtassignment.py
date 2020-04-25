@@ -5,8 +5,13 @@ class DTassignment:
     def __init__(self, members: set):
         self.all_members = members
         self.mon_group = list()
+        self.mon_grouping = ""
+
         self.wed_group = list()
+        self.wed_grouping = ""
+
         self.fri_group = list()
+        self.fri_grouping = ""
 
     def assign_random_groupings(self) -> None:
         to_distribute = self.all_members.copy()
@@ -43,32 +48,18 @@ class DTassignment:
         self.wed_group.sort()
         self.fri_group.sort()
 
-    def mon_grouping(self) -> str:
-        dudes = ":joy:  "
-        for user_id in self.mon_group:
-            dude = "<@" + user_id + ">"
-            dudes += dude
-            dudes += "  "
-        dudes += ":joy:"
-        return dudes
+        def grouping_toString(group: list) -> str:
+            dudes = ":joy:  "
+            for user_id in group:
+                dude = "<@" + user_id + ">"
+                dudes += dude
+                dudes += "  "
+            dudes += ":joy:"
+            return dudes
 
-    def wed_grouping(self) -> str:
-        dudes = ":joy:  "
-        for user_id in self.wed_group:
-            dude = "<@" + user_id + ">"
-            dudes += dude
-            dudes += "  "
-        dudes += ":joy:"
-        return dudes
-
-    def fri_grouping(self) -> str:
-        dudes = ":joy:  "
-        for user_id in self.fri_group:
-            dude = "<@" + user_id + ">"
-            dudes += dude
-            dudes += "  "
-        dudes += ":joy:"
-        return dudes
+        self.mon_grouping = grouping_toString(self.mon_group)
+        self.wed_grouping = grouping_toString(self.wed_group)
+        self.fri_grouping = grouping_toString(self.fri_group)
 
     def clear_groupings(self) -> None:
         self.mon_group.clear()
